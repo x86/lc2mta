@@ -20,11 +20,6 @@ addEventHandler ( "onClientResourceStart", resourceRoot,
 		showPlayerHudComponent ( "radar", true )
 		showPlayerHudComponent ( "vehicle_name", false )
 		showPlayerHudComponent ( "area_name", false )
-		
-		setWaterLevel ( -6000 ) -- remove the standard SA lakes
-
-		local water      = createWater ( -2998, -2998, 0, 2998, -2998, 0, -2998, 2998, 0, 2998, 2998, 0 )
-		setWaterLevel ( water, 0.0000001 )
 
 		-- change our pos, so we can remove the SA map
 		setElementFrozen ( localPlayer, true )
@@ -60,7 +55,7 @@ addEventHandler ( "onClientResourceStart", resourceRoot,
 		end
 		
 		-- Help (Remove after RELEASE)
-		outputChatBox ( "Use /debug to debug (you could also press F2 to show all streamed in objects, and F3 to see ghost objects)" )
+		-- outputChatBox ( "Use /debug to debug (you could also press F2 to show all streamed in objects, and F3 to see ghost objects)" )
 		
 		-- realtime clock (Remove after RELEASE)
 		local tRealTime =  getRealTime ( )

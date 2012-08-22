@@ -1,4 +1,5 @@
 <meta>
+	<script src="water.lua" type="client" />
 	<script src="client.lua" type="client" />
 	<script src="handler.lua" type="server" />
 </meta>

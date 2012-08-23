@@ -4,7 +4,9 @@ local peds = {}
 function createPeds ()
 	for model,nodes in pairs (pednodes) do
 		for i,node in ipairs (nodes) do
-			if math.random(1,4) == 1 then
+			if i > 2 then
+				break
+			else
 				local ped
 				repeat
 					ped = createPed(math.random(10,288),node.x,node.y,node.z)
@@ -45,11 +47,11 @@ end
 addEventHandler("onClientElementStreamOut",root,
 	function ()
 		if not isElement(source) then return end -- for some reason this is possible
-		if peds[ped] then
-			setElementFrozen(ped,true)
-			local object,current = peds[ped].object,peds[ped].current
-			peds[ped] = nil
-			standbypeds[ped] = {object=object,current=current,history={current},reversing=false}
+		if peds[source] then
+			setElementFrozen(source,true)
+			local object,current = peds[source].object,peds[source].current
+			peds[source] = nil
+			standbypeds[source] = {object=object,current=current,history={current},reversing=false}
 		end
 	end
 )
@@ -147,8 +149,12 @@ addEventHandler("onClientRender",root,
 	end
 )
 
-addEventHandler("onClientResourceStart",root,
-	function ()
-		setTimer(createPeds,1000,1)
+-- should be replaced with an event later on
+function checkIfReady ()
+	if getPedContactElement(localPlayer) then
+		setTimer(createPeds,5000,1)
+	else
+		setTimer(checkIfReady,1000,1)
 	end
-)
+end
+checkIfReady()

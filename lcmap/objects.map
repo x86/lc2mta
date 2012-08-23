@@ -5465,7 +5465,7 @@
   <object model="1279" posX="-1474.38" posY="288.561" posZ="7.584" rotX="0" rotY="0" rotZ="56.250030547823" interior="0" doublesided="true" frozen="true" />
   <object model="1279" posX="-1443.38" posY="262.19" posZ="7.584" rotX="0" rotY="0" rotZ="78.749948228209" interior="0" doublesided="true" frozen="true" />
   <object model="1279" posX="-1401.09" posY="252.256" posZ="7.584" rotX="0" rotY="0" rotZ="44.999955366576" interior="0" doublesided="true" frozen="true" />
-  <object model="5295" posX="-770.922" posY="-631.118" posZ="81.2365" rotX="0" rotY="-0" rotZ="-116.56505131027" interior="0" doublesided="true" frozen="true" />
+  <object model="5295" posX="-770.922" posY="-631.118" posZ="81.2365" rotX="0" rotY="-0" rotZ="0" interior="0" doublesided="true" frozen="true" />
   <object model="5296" posX="-616.596" posY="-630.884" posZ="133.401" rotX="0" rotY="-0" rotZ="-0" interior="0" doublesided="true" frozen="true" />
   <object model="1279" posX="-1074.73" posY="-422.305" posZ="12.5477" rotX="0" rotY="-0" rotZ="-180.00000020568" interior="0" doublesided="true" frozen="true" />
   <object model="1279" posX="-1066.43" posY="-442.82" posZ="12.7163" rotX="0" rotY="-0" rotZ="-0" interior="0" doublesided="true" frozen="true" />

@@ -1,0 +1,5 @@
+<meta>
+	<info name="idebrowser" type="misc" author="MCvarial" description="nothing special, just here for utility reasons" />
+	
+	<script src="script.lua" type="server" />
+</meta>

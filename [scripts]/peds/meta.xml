@@ -1,0 +1,6 @@
+<meta>
+	<info name="peds" author="MCvarial" version="0.0.1" type="resource" />
+	
+	<script src="pednodes.lua" type="client" />
+	<script src="script.lua" type="client" />
+</meta>

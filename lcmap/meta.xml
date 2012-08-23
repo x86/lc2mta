@@ -1,0 +1,7 @@
+<meta>
+    <info author="x86 and MCvarial" type="map" name="Liberty City" />
+
+	<!--<script src="_converter.lua" />-->
+
+	<map src="objects.map" />
+</meta>

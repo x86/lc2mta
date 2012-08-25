@@ -1,0 +1,12 @@
+<meta>
+	<info name="paths" author="MCvarial" version="0.0.1" />
+	
+	<script src="client.lua" type="client" />
+	
+	<file src="paths/flight.dat" />
+	<file src="paths/flight2.dat" />
+	<file src="paths/flight3.dat" />
+	<file src="paths/flight4.dat" />
+	<file src="paths/tracks.dat" />
+	<file src="paths/tracks2.dat" />
+</meta>

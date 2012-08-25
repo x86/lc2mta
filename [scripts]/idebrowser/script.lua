@@ -85,8 +85,10 @@ for i,ipl in ipairs (ipls) do
 end
 
 -- read ides
-local nodeID = 0
+local pednodeID = 0
+local carnodeID = 0
 local pedNodes = {}
+local carNodes = {}
 local currentType = false
 local currentSubType = false
 for i,ide in ipairs (ides) do
@@ -94,7 +96,6 @@ for i,ide in ipairs (ides) do
 	local content = fileRead(file,fileGetSize(file))
 	local lines = split(content,"\n\r")
 	for i,line in ipairs (lines) do
-		if #getElementsByType("ped") + #getElementsByType("vehicle") > 255 then return end
 		local words = split(line,",")
 		cleanup(words)
 		if #words == 1 then
@@ -110,24 +111,28 @@ for i,ide in ipairs (ides) do
 				currentObject = tonumber(words[2])
 				currentSubType = words[1]
 				pedNodes[currentObject] = {}
-				nodeID = 0
+				pednodeID = 0
+				carnodeID = 0
 			end
 			if currentSubType == "ped" then
 				if #words == 9 and words[1] ~= 0 then
 					local object = allObjects[currentObject][1]
 					local offsetx,offsety,offsetz = words[4]/16,words[5]/16,0 -- not sure about offsetz
-					table.insert(pedNodes[currentObject],{id=nodeID,x=object.x+offsetx,y=object.y+offsety,z=object.z+offsetz,neighbor=tonumber(words[2])})
-					nodeID = nodeID+1
+					table.insert(pedNodes[currentObject],{id=pednodeID,x=object.x+offsetx,y=object.y+offsety,z=object.z+offsetz,neighbor=tonumber(words[2])})
+					pednodeID = pednodeID+1
 				end
 			end
 			if currentSubType == "car" then
-				if #words == 9 then
-					for i,object in ipairs (allObjects[currentObject] or {}) do
-						local offsetx,offsety,offsetz = words[4]*16,words[5]*16,0 -- not sure about offsetz
-						--local vehicle = createVehicle(411,object.x+offsetx,object.y+offsety,object.z+offsetz)
-						--createBlipAttachedTo(vehicle)
-						--setElementFrozen(vehicle,true)
+				if #words == 9 and words[1] ~= 0 and allObjects[currentObject] then
+					local object = allObjects[currentObject][1]
+					local offsetx,offsety,offsetz = words[4]/16,words[5]/16,0 -- not sure about offsetz
+					local id = tostring(currentObject)..tostring(carnodeID)
+					if words[2] == -1 then
+						carNodes[id] = {id=id,x=object.x+offsetx,y=object.y+offsety,z=object.z+offsetz,neighbor=false,closest=false,lanes="{"..words[8]..","..words[9].."}"}
+					else
+						carNodes[id] = {id=id,x=object.x+offsetx,y=object.y+offsety,z=object.z+offsetz,neighbor=tostring(currentObject)..tostring(words[2]),closest=false,lanes="{"..words[8]..","..words[9].."}"}
 					end
+					carnodeID = carnodeID+1
 				end
 			end
 		end
@@ -146,9 +151,9 @@ for model,content in pairs (pedNodes) do
 			fileWrite(file,"		{")
 			for k,v in pairs (node) do
 				if k == "neighbor" then
-					fileWrite(file,k.."="..v)
+					fileWrite(file,k.."="..tostring(v))
 				else
-					fileWrite(file,k.."="..v..",")
+					fileWrite(file,k.."="..tostring(v)..",")
 				end
 			end
 			if i == #content then
@@ -159,6 +164,38 @@ for model,content in pairs (pedNodes) do
 		end
 		fileWrite(file,"	},\r\n")
 	end
+end
+fileWrite(file,"}")
+fileFlush(file)
+fileClose(file)
+
+
+for id,node in pairs (carNodes) do
+	local distances = {}
+	for checkid,checknode in pairs (carNodes) do
+		if checkid ~= id and checkid ~= node.neighbor then
+			local distance = getDistanceBetweenPoints2D(node.x,node.y,checknode.x,checknode.y)
+			table.insert(distances,{id=checknode.id,distance=distance})
+		end
+	end
+	table.sort(distances,function (a,b) return a.distance < b.distance end)
+	node.closest = "{"..distances[1].id..","..distances[2].id.."}"
+end				
+if fileExists("carnodes.lua") then
+	fileDelete("carnodes.lua")
+end
+local file = fileCreate("carnodes.lua")
+fileWrite(file,"carnodes = {\r\n")
+for id,node in pairs (carNodes) do
+	fileWrite(file,"	["..id.."] = {")
+	for k,v in pairs (node) do
+		if k == "closest" then
+			fileWrite(file,k.."="..tostring(v))
+		else
+			fileWrite(file,k.."="..tostring(v)..",")
+		end
+	end
+	fileWrite(file,"},\r\n")
 end
 fileWrite(file,"}")
 fileFlush(file)

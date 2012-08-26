@@ -1,7 +1,8 @@
 <meta>
 	<info name="paths" author="MCvarial" version="0.0.1" />
 	
-	<script src="client.lua" type="client" />
+	<script src="trams.lua" type="client" />
+	<script src="planes.lua" type="client" />
 	
 	<file src="paths/flight.dat" />
 	<file src="paths/flight2.dat" />

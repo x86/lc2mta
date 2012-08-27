@@ -1,0 +1,44 @@
+<meta>
+	<info author="Gamesnert" version="1.0.0" type="misc" name="High-res radar" description="Radar image replacement script"/>
+	
+	<script src="radar.lua" type="client"/>
+	
+	<file src="texreplace.fx"/>
+	
+	<file src="sattelite/black.png"/>
+	<file src="sattelite/brown.png"/>
+    <file src="sattelite/radar50.png"/>
+    <file src="sattelite/radar51.png"/>
+    <file src="sattelite/radar53.png"/>
+    <file src="sattelite/radar62.png"/>
+    <file src="sattelite/radar63.png"/>
+    <file src="sattelite/radar64.png"/>
+    <file src="sattelite/radar65.png"/>
+    <file src="sattelite/radar66.png"/>
+    <file src="sattelite/radar67.png"/>
+    <file src="sattelite/radar68.png"/>
+    <file src="sattelite/radar74.png"/>
+    <file src="sattelite/radar75.png"/>
+    <file src="sattelite/radar76.png"/>
+    <file src="sattelite/radar77.png"/>
+    <file src="sattelite/radar78.png"/>
+    <file src="sattelite/radar79.png"/>
+    <file src="sattelite/radar80.png"/>
+    <file src="sattelite/radar86.png"/>
+    <file src="sattelite/radar87.png"/>
+    <file src="sattelite/radar88.png"/>
+    <file src="sattelite/radar89.png"/>
+    <file src="sattelite/radar90.png"/>
+    <file src="sattelite/radar91.png"/>
+    <file src="sattelite/radar92.png"/>
+    <file src="sattelite/radar98.png"/>
+    <file src="sattelite/radar99.png"/>
+    <file src="sattelite/radar100.png"/>
+    <file src="sattelite/radar101.png"/>
+    <file src="sattelite/radar102.png"/>
+    <file src="sattelite/radar103.png"/>
+    <file src="sattelite/radar104.png"/>
+    <file src="sattelite/radar112.png"/>
+    <file src="sattelite/radar113.png"/>
+    <file src="sattelite/radar114.png"/>
+</meta>
